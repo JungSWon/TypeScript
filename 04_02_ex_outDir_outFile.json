@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "description": "Instructs the TypeScript compiler how to compile .ts files.",
+    "properties": {
+        "outFile": {
+            "description": "Concatenate and emit output to single file.",
+            "type": "string"
+        },
+        "outDir": {
+            "description": "Redirect output structure to the directory.",
+            "type": "string"
+        },
+        "rootDir": {
+            "description": "Specifies the root directory of input files. Use to control the output directory structure with --outDir.",
+            "type": "string"
+        }
+    }
+}
