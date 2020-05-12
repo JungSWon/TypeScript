@@ -63,6 +63,7 @@
 ###  Number / number 
 - JS 와 같이, TS 의 모든 숫자는 부동 소수점 값
 - TS는 16진수 및 10진수 리터럴 외에도, ECMAScript 2015에 도입된 2진수 및 8진수 지원
+- 이또한 `number` 권장
 - ```ts 
     let decimal: number = 6; // 10진수 리터럴
 
@@ -79,7 +80,7 @@
 
 
 ###  Template String 
-- 행에 걸쳐 있거나, 표현식을 넣을 수 있는 문자열
+- 여러줄이거나, 표현식을 넣을 수 있는 문자열
 - 이 문자열은 backtick (= backquote) 기호에 둘러쌓여 있음
 - 포함된 표현식은 `${ expr }` 와 같은 형태로 사용
 - ``` ts
@@ -107,11 +108,12 @@
 
 ### undefined & null are subtypes of all other types 
 - 기본 설정
-- number 에 null 또는 undefined 를 할당 할 수 있다는 의미
-- 그러나, 컴파일 옵션에서 `--strictNullChecks`사용 하면
-- null 과 undefined 는 void나 자기 자신에게만 할당할 수 있음
-- 이 경우, null 과 undefined 를 할당할 수 있게 하려면 
-- union type 을 이용해야 함
+- null/undefined는 다른 모든 타입(number, string.. )에 대입/할당 할 수 있다는 의미 
+- 그러나, 컴파일 옵션에서 `--strictNullChecks`사용 하면 
+  - 너무 엄격한 룰이 적용되어서
+  - null / undefined 는 void나 각자 자기 자신에게만 할당할 수 있음 (아니면 빨간줄)
+  - 이 경우, null 과 undefined 를 할당할 수 있게 하려면 
+  - union type 을 이용해야 함
 - ``` ts 
     let name: string = null;
     let age: number = undefined;
@@ -156,7 +158,7 @@
 - 타입이 없는 상태 
 - `any` 와 반대의미 
 - `Void`는 없음. 소문자!
-- 주로 함수 리턴이 없을 때 사용, 그 외에는 사용 할 일이 없음 
+- 주로 리턴값 없는 함수를 짤때 사용, 그 외에는 사용 할 일이 없음
 - ``` ts
   function returnVoid(message): void {
     console.log(message);
@@ -169,6 +171,7 @@
 - 최대한 쓰지 않는 것이 핵심 
 - 왜냐면, 컴파일 타임에 타입체크가 비정상 처리되기 때문 
 - 그래서 컴파일 옵션 중에는 any를 쓰면 오류를 out하도록 하는 옵션 `nolmplicitAny`도 존재 
+- 최근의 TS는 타입 유추를 잘 하기 때문에 Any이전에 빨간줄을 띄움 
 - ``` ts
   function returnAny(message): any {
     console.log(message);
@@ -178,6 +181,7 @@
 
 ### Never 
 - 리턴에 주로 사용
+- 잘 안쓴다. 
 - 아래 3가지 정도의 경우가 대부분 
 - ``` ts
   // Function returning never must have unreachable end point
@@ -208,8 +212,8 @@
   ``` 
 
 ### Tuple 
-- 배열인데 타입이 한가지가 아닌 경우 
-- 마찬가지로 객체 
+- 배열인데 요소 타입이 한가지로 통일되지 않은 경우 
+- 마찬가지로 객체
 - 꺼내 사용할 때 주의! 
   - 배열을 Desrtucting하면 타입이 제대로 얻어짐 
 - ``` ts
@@ -228,7 +232,7 @@
   
   const person: [string, number] = ['mark', 35];
   
-  const [name, age] = person;
+  const [name, age] =` person;
   ```
 
 ### Enum 
